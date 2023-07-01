@@ -1,8 +1,9 @@
-from ticktacktoe import TicTacToe
+from tictactoe import TicTacToe
 from connect_four import ConnectFour
 from resnet import ResNet
 import torch
 from alphazero import AlphaZero
+from alphazero_parallel import AlphaZeroParallel
 
 # game = TicTacToe()
 game = ConnectFour()
@@ -18,6 +19,7 @@ args_tic = {
     "num_searches": 60,
     "num_iterations": 3,
     "num_self_plays": 500,
+    "num_parallel_games": 100,
     "num_epochs": 4,
     "batch_size": 64,
     "temperature": 1.25,
@@ -30,6 +32,7 @@ args = {
     "num_searches": 600,
     "num_iterations": 8,
     "num_self_plays": 500,
+    "num_parallel_games": 100,
     "num_epochs": 4,
     "batch_size": 128,
     "temperature": 1.25,
@@ -37,5 +40,6 @@ args = {
     "dirichlet_alpha": 0.3,
 }
 
-alphazero = AlphaZero(model, optimizer, game, args)
+alphazero = AlphaZeroParallel(model, optimizer, game, args)
+# alphazero = AlphaZero(model, optimizer, game, args)
 alphazero.learn()

@@ -1,4 +1,4 @@
-from ticktacktoe import TicTacToe
+from tictactoe import TicTacToe
 from connect_four import ConnectFour
 import torch
 from monte_carlo_tree_search import MonteCarloTreeSearch

@@ -1,4 +1,4 @@
-from ticktacktoe import TicTacToe
+from tictactoe import TicTacToe
 import torch
 from monte_carlo_tree_search import MonteCarloTreeSearch
 import numpy as np
@@ -8,21 +8,21 @@ from resnet import ResNet
 
 torch.manual_seed(0)
 
-ticktacktoe = TicTacToe()
+tictactoe = TicTacToe()
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-state = ticktacktoe.get_initial_state()
-state = ticktacktoe.get_next_state(state, 2, -1)
-state = ticktacktoe.get_next_state(state, 4, -1)
-state = ticktacktoe.get_next_state(state, 6, 1)
-state = ticktacktoe.get_next_state(state, 8, 1)
+state = tictactoe.get_initial_state()
+state = tictactoe.get_next_state(state, 2, -1)
+state = tictactoe.get_next_state(state, 4, -1)
+state = tictactoe.get_next_state(state, 6, 1)
+state = tictactoe.get_next_state(state, 8, 1)
 
-encoded_state = ticktacktoe.get_encoded_state(state)
+encoded_state = tictactoe.get_encoded_state(state)
 
 tensor_state = torch.tensor(encoded_state, device=device).unsqueeze(0)
 
-model = ResNet(ticktacktoe, 4, 64, device=device)
+model = ResNet(tictactoe, 4, 64, device=device)
 
 model.load_state_dict(torch.load("weights/model_2.pt", map_location=device))
 
@@ -37,5 +37,5 @@ print("\nValue: \n", value)
 print("\nState: \n", state)
 print("\nTensor state: \n", tensor_state)
 
-plt.bar(range(ticktacktoe.action_size), policy)
+plt.bar(range(tictactoe.action_size), policy)
 plt.show()
