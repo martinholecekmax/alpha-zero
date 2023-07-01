@@ -1,7 +1,5 @@
-from tictactoe import TicTacToe
+from games.tictactoe import TicTacToe
 import torch
-from monte_carlo_tree_search import MonteCarloTreeSearch
-import numpy as np
 import matplotlib.pyplot as plt
 
 from resnet import ResNet

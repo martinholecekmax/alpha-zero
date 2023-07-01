@@ -1,7 +1,7 @@
 import kaggle_environments
 from monte_carlo_tree_search_parallel import MonteCarloTreeSearchParallel
 import numpy as np
-from tictactoe import TicTacToe
+from games.tictactoe import TicTacToe
 from resnet import ResNet
 import torch
 

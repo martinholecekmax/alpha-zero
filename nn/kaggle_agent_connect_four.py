@@ -1,7 +1,7 @@
 import kaggle_environments
 from monte_carlo_tree_search_parallel import MonteCarloTreeSearchParallel
 import numpy as np
-from connect_four import ConnectFour
+from games.connect_four import ConnectFour
 from resnet import ResNet
 import torch
 

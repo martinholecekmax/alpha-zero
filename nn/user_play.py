@@ -1,11 +1,11 @@
-from tictactoe import TicTacToe
-from connect_four import ConnectFour
+from games.connect_four import ConnectFour
 import torch
 from monte_carlo_tree_search import MonteCarloTreeSearch
 import numpy as np
-import matplotlib.pyplot as plt
 
 from resnet import ResNet
+
+# from games.tictactoe import TicTacToe
 
 torch.manual_seed(0)
 
@@ -23,8 +23,11 @@ args = {
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-model = ResNet(game, 9, 128, device=device)
+# model = ResNet(game, 4, 64, device=device) # TicTacToe
+model = ResNet(game, 9, 128, device=device)  # ConnectFour
+
 # model.load_state_dict(torch.load("weights/model_0_ConnectFour.pt", map_location=device))
+
 model.eval()
 
 mcts = MonteCarloTreeSearch(game, args, model)

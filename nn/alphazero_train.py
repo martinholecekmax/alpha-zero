@@ -1,16 +1,18 @@
-from tictactoe import TicTacToe
-from connect_four import ConnectFour
+from games.connect_four import ConnectFour
 from resnet import ResNet
 import torch
-from alphazero import AlphaZero
 from alphazero_parallel import AlphaZeroParallel
+
+# from games.tictactoe import TicTacToe
+# from alphazero import AlphaZero
 
 # game = TicTacToe()
 game = ConnectFour()
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-model = ResNet(game, 9, 128, device)
+# model = ResNet(game, 4, 64, device) # TicTacToe
+model = ResNet(game, 9, 128, device)  # ConnectFour
 
 optimizer = torch.optim.Adam(model.parameters(), lr=0.001, weight_decay=1e-4)
 
@@ -27,7 +29,7 @@ args_tic = {
     "dirichlet_alpha": 0.3,
 }
 
-args = {
+args_con = {
     "C": 2,
     "num_searches": 600,
     "num_iterations": 8,
@@ -40,6 +42,6 @@ args = {
     "dirichlet_alpha": 0.3,
 }
 
-alphazero = AlphaZeroParallel(model, optimizer, game, args)
-# alphazero = AlphaZero(model, optimizer, game, args)
+alphazero = AlphaZeroParallel(model, optimizer, game, args_con)
+# alphazero = AlphaZero(model, optimizer, game, args_con)
 alphazero.learn()
